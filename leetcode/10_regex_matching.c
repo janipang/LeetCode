@@ -9,7 +9,7 @@ int isMatch(char *string, char *pattern)
 
     while (*pattern != '\0' && *string != '\0')
     {
-        // printf("string: %c, pattern: %c, stack %c\n", *string, *pattern, *(stack - 1));
+        printf("string: %c, pattern: %c, stack %c\n", *string, *pattern, *(stack - 1));
         if (*string == *pattern || *pattern == '.')
         {
             *stack = *string;
@@ -51,20 +51,34 @@ int isMatch(char *string, char *pattern)
         }
     }
 
-    // printf("-- string: %c, pattern: %c, stack %c\n", *string, *pattern, *(stack - 1));
+    printf("-- string: %c, pattern: %c, stack %c\n", *string, *pattern, *(stack - 1));
     if (*pattern == '\0' && *string == '\0')
         return 1;
     if (*pattern != '\0' && *string == '\0' && *pattern == '*' && *(pattern + 1) == '\0')
         return 1;
+    if (*pattern != '\0' && *string == '\0' && *pattern == '*'){
+        pattern++;
+        while (*pattern != '\0'){
+            if (*pattern == *(stack - 1)){
+                stack--;
+                pattern++;
+            }
+            else{
+                return 0;
+            }
+        }
+        return 1;
+    }
     return 0;
 }
 
 int main()
 {
-    printf("test case 1: %d\n", isMatch("aa", "a"));
-    printf("test case 2: %d\n", isMatch("aa", "aa"));
-    printf("test case 3: %d\n", isMatch("aa", "a*"));
-    printf("test case 4: %d\n", isMatch("ab", ".*"));
-    printf("test case 5: %d\n", isMatch("aab", "c*a*b"));
+    // printf("test case 1: %d\n", isMatch("aa", "a"));
+    // printf("test case 2: %d\n", isMatch("aa", "aa"));
+    // printf("test case 3: %d\n", isMatch("aa", "a*"));
+    // printf("test case 4: %d\n", isMatch("ab", ".*"));
+    // printf("test case 5: %d\n", isMatch("aab", "c*a*b"));
+    printf("test case 5: %d\n", isMatch("aaa", "a*a"));
     return 0;
 }

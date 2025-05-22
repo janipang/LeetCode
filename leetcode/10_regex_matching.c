@@ -79,6 +79,7 @@ int main()
     // printf("test case 3: %d\n", isMatch("aa", "a*"));
     // printf("test case 4: %d\n", isMatch("ab", ".*"));
     // printf("test case 5: %d\n", isMatch("aab", "c*a*b"));
-    printf("test case 5: %d\n", isMatch("aaa", "a*a"));
+    // printf("test case 6: %d\n", isMatch("aaa", "a*a"));
+    printf("test case 7: %d\n", isMatch("aaa", "ab*a*c*a"));
     return 0;
 }

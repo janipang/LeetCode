@@ -8,12 +8,14 @@ int maxArea(int* height, int heightSize) {
     int max_area = 0;
     int cur_area = 0;
     for ( int start = 0; start < heightSize - 1; start++){
+        int max_possible = height[start] * (heightSize - start - 1);
+        if ( max_possible < max_area ) continue;
         for ( int stop = start + 1; stop < heightSize; stop ++){
             cur_area = (stop - start) * min(height[start], height[stop]);
             // printf("start %d, stop %d, height1 %d, height2 %d, area %d\n", start, stop, height[start], height[stop], cur_area);
             if (cur_area > max_area) max_area = cur_area;
         }
-        printf("---------------\n");
+        // printf("---------------\n");
     }
     return max_area;
 }

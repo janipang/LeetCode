@@ -32,13 +32,28 @@ char* get_symbol(int digit_number, int digit_value, int i){
     // ((i-1)*2) +1if5  = {0,   1,   2,   3,   4,   5,   6};
     // index        = {0,   1,   2,   3,   4,   5,   6};
     char symbols[8] = {'I', 'V', 'X', 'L', 'C', 'D', 'M'};
-        if (digit_number == 4 || digit_number == 9){
+    static char result[10] = "";
+    int result_index = 0;
+    if (digit_number == 4 || digit_number == 9){
 
-        }else{
-            int isFive = digit_number == 5;
+    }else{
+        int value = digit_number * digit_value;
+        while (value > 0){
+            int isFive = 0;
+            if (value >= 5 * digit_value){
+                isFive = 1;
+                value -= 5 * digit_value;
+            }
+            else{
+                value -= 1 * digit_value;
+            }
             int symbol_index = ((i - 1) * 2) + isFive;
-            return symbols[symbol_index];
+            result[result_index] = symbols[symbol_index];
+            result_index ++;
         }
+        result[result_index] = '\0';
+    }
+    return result;
 
 }
 
@@ -52,6 +67,7 @@ char* intToRoman(int num) {
 }
 
 int main(){
+    // printf("%s", get_symbol(7,100,3));
 //     printf("test1: %d\n", intToRoman(3749)); // -> MMMDCCXLIX
 //     printf("test2: %d\n", intToRoman(58)); // -> LVIII
 //     printf("test3: %d\n", intToRoman(1994)); // -> MCMXCIV

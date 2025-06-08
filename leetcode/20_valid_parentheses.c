@@ -27,7 +27,8 @@ int isValid(char* s) {
         }
         s++;
     }
-    return 1;
+    if (stack_ptr == stack) return 1;
+    else return 0;
 }
 
 int main(){

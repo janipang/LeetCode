@@ -4,12 +4,14 @@ int value(char alp)
 {
     char num_alp[7] = {'I', 'V', 'X', 'L', 'C', 'D', 'M'};
     int num_val[7] = {1, 5, 10, 50, 100, 500, 1000};
-    for (int i = 0; i < 7; i++)
-    {
-        if (alp == num_alp[i])
-            return num_val[i];
-    }
-    return -1;
+    if (alp == 'I') return 1;
+    else if (alp == 'V') return 5;
+    else if (alp == 'X') return 10;
+    else if (alp == 'L') return 50;
+    else if (alp == 'C') return 100;
+    else if (alp == 'D') return 500;
+    else if (alp == 'M') return 1000;
+    else return -1;
 }
 
 int romanToInt(char *s)
